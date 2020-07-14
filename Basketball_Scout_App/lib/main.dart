@@ -84,33 +84,47 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          primaryColor: Colors.indigo[900],
-          accentColor: Colors.redAccent[400],
-          fontFamily: 'Delirium',
-          textTheme: TextTheme(
-              headline1: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Jackport-College',
-                fontSize: 40,
-              ),
-              headline2: TextStyle(
-                color: Colors.white,
-                fontSize: 40,
-              ),
-              headline3: TextStyle(
-                color: Colors.white,
-                fontSize: 26,
-              ),
-              headline4: TextStyle(color: Colors.indigo[900], fontSize: 56),
-              headline5: TextStyle(fontSize: 30))),
+        primaryColor: Colors.indigo[900],
+        accentColor: Colors.redAccent[400],
+        fontFamily: 'Delirium',
+        textTheme: TextTheme(
+          headline1: const TextStyle(
+            color: Colors.white,
+            fontFamily: 'Jackport-College',
+            fontSize: 40,
+          ),
+          headline2: const TextStyle(
+            color: Colors.white,
+            fontSize: 40,
+          ),
+          headline3: const TextStyle(
+            color: Colors.white,
+            fontSize: 26,
+          ),
+          headline4: TextStyle(
+            color: Colors.indigo[900],
+            fontSize: 56,
+          ),
+          headline5: const TextStyle(fontSize: 30),
+        ),
+      ),
       routes: {
-        '/': (ctx) => TabsScreen(_filters, _setFilters, _favouritePlayers),
-        SelectedPositionScreen.route: (ctx) =>
-            SelectedPositionScreen(_matchingPlayers),
-        PlayersFilterScreen.route: (ctx) =>
-            PlayersFilterScreen(_filters, _setFilters),
-        PlayerDetailsScreen.route: (ctx) =>
-            PlayerDetailsScreen(_toggleFavourite, _isPlayerFavourite),
+        '/': (ctx) => TabsScreen(
+              _filters,
+              _setFilters,
+              _favouritePlayers,
+            ),
+        SelectedPositionScreen.route: (ctx) => SelectedPositionScreen(
+              _matchingPlayers,
+            ),
+        PlayersFilterScreen.route: (ctx) => PlayersFilterScreen(
+              _filters,
+              _setFilters,
+            ),
+        PlayerDetailsScreen.route: (ctx) => PlayerDetailsScreen(
+              _toggleFavourite,
+              _isPlayerFavourite,
+            ),
       },
     );
   }

@@ -54,7 +54,7 @@ class PlayerDetailsItem extends StatelessWidget {
           ),
           onTap: () => selectPlayer(context),
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }

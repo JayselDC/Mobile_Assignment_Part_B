@@ -12,9 +12,9 @@ class FavouritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return favouritePlayers.isEmpty
         ? Center(
-            child: Text(
+            child: const Text(
               'You have no favourite players yet!',
-              style: TextStyle(fontSize: 44),
+              style: const TextStyle(fontSize: 44),
             ),
           )
         : ListView.builder(

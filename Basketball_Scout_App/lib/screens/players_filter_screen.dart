@@ -59,7 +59,7 @@ class _PlayersFilterScreenState extends State<PlayersFilterScreen> {
             value: val,
             onChanged: update,
           ),
-          Divider()
+          const Divider()
         ],
       );
     }
@@ -127,10 +127,13 @@ class _PlayersFilterScreenState extends State<PlayersFilterScreen> {
               ],
             ),
           ),
-          Text('Does not filter favourites', style: TextStyle(
-            fontSize: 24,
-            color: Colors.grey,  
-          ),),
+          const Text(
+            'Does not filter favourites',
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.grey,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(10),
             child: Row(
@@ -142,7 +145,7 @@ class _PlayersFilterScreenState extends State<PlayersFilterScreen> {
                     'Save Filters',
                     style: TextStyle(
                       color: Theme.of(context).accentColor,
-                      fontSize: 32
+                      fontSize: 32,
                     ),
                   ),
                 ),

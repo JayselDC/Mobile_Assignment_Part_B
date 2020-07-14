@@ -52,7 +52,7 @@ class _SelectedPositionScreenState extends State<SelectedPositionScreen> {
       appBar: AppBar(
         title: Column(
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Text(
@@ -63,12 +63,12 @@ class _SelectedPositionScreenState extends State<SelectedPositionScreen> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.filter_list,
               color: Colors.white,
             ),
             onPressed: openFilters,
-          )
+          ),
         ],
       ),
       body: ListView.builder(

@@ -50,9 +50,9 @@ class PositionCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: Container(
                 height: 200,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black,
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                       colors: [
                         Colors.black,
                         Colors.transparent,

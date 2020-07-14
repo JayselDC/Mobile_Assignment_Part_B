@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import './positions_screen.dart';
@@ -52,7 +51,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Column(
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Text(
@@ -74,7 +73,7 @@ class _TabsScreenState extends State<TabsScreen> {
         items: [
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,
-            icon: Icon(
+            icon: const Icon(
               Icons.person_outline,
             ),
             title: Text(
@@ -84,7 +83,7 @@ class _TabsScreenState extends State<TabsScreen> {
           ),
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite_border,
             ),
             title: Text(
@@ -94,7 +93,7 @@ class _TabsScreenState extends State<TabsScreen> {
           ),
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,
-            icon: Icon(
+            icon: const Icon(
               Icons.filter_list,
             ),
             title: Text(
