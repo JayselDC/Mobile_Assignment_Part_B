@@ -1,10 +1,18 @@
-import 'package:Basketball_Scout_App/screens/positions_screen.dart';
+
 import 'package:flutter/material.dart';
 
 import './positions_screen.dart';
 import './favourites_screen.dart';
+import './players_filter_screen.dart';
+import '../models/player.dart';
 
 class TabsScreen extends StatefulWidget {
+  final Map<String, bool> filterData;
+  final Function saveFilters;
+  final List<Player> favouritePlayers;
+
+  TabsScreen(this.filterData, this.saveFilters, this.favouritePlayers);
+
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
@@ -21,8 +29,12 @@ class _TabsScreenState extends State<TabsScreen> {
         'title': 'Positions',
       },
       {
-        'page': FavouritesScreen(),
+        'page': FavouritesScreen(widget.favouritePlayers),
         'title': 'Favourites',
+      },
+      {
+        'page': PlayersFilterScreen(widget.filterData, widget.saveFilters),
+        'title': 'Filters',
       },
     ];
     super.initState();
@@ -38,10 +50,17 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          child: Text(
-            _pages[_selectedPageIndex]['title'],
-          ),
+        title: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              _pages[_selectedPageIndex]['title'],
+              style: Theme.of(context).textTheme.headline2,
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
         centerTitle: true,
       ),
@@ -58,14 +77,30 @@ class _TabsScreenState extends State<TabsScreen> {
             icon: Icon(
               Icons.person_outline,
             ),
-            title: Text('Positions'),
+            title: Text(
+              'Positions',
+              style: Theme.of(context).textTheme.headline3,
+            ),
           ),
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(
               Icons.favorite_border,
             ),
-            title: Text('Favourites'),
+            title: Text(
+              'Favourites',
+              style: Theme.of(context).textTheme.headline3,
+            ),
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Theme.of(context).primaryColor,
+            icon: Icon(
+              Icons.filter_list,
+            ),
+            title: Text(
+              'Filters',
+              style: Theme.of(context).textTheme.headline3,
+            ),
           ),
         ],
         onTap: _selectPage,

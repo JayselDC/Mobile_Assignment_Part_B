@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../screens/selected_position_screen.dart';
 
 class PositionCard extends StatelessWidget {
+  final String title;
+  final String imageSrc;
+
   const PositionCard(
     this.title,
     this.imageSrc,
   );
-
-  final String title;
-  final String imageSrc;
 
   void selectPosition(BuildContext context) {
     Navigator.of(context).pushNamed(
@@ -67,10 +67,7 @@ class PositionCard extends StatelessWidget {
               right: 15,
               child: Text(
                 title,
-                style: TextStyle(
-                  fontSize: 36,
-                  color: Colors.white,
-                ),
+                style: Theme.of(context).textTheme.headline1,
               ),
             )
           ],

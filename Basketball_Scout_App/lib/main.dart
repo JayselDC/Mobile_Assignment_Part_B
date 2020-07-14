@@ -1,26 +1,116 @@
-import 'package:Basketball_Scout_App/screens/players_filter_screen.dart';
-import 'package:Basketball_Scout_App/screens/selected_position_screen.dart';
 import 'package:flutter/material.dart';
 
+import './dummy_data.dart';
+import './models/player.dart';
 import './screens/tabs_screen.dart';
+import './screens/players_filter_screen.dart';
+import './screens/selected_position_screen.dart';
+import './screens/player_details_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  List<Player> _matchingPlayers = DUMMY_PLAYERS;
+  List<Player> _favouritePlayers = [];
+
+  Map<String, bool> _filters = {
+    'showS': true,
+    'showA': true,
+    'showB': true,
+    'showC': true,
+    'showD': true,
+    'showE': true,
+  };
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(
+      () {
+        _filters = filterData;
+
+        _matchingPlayers = DUMMY_PLAYERS.where((player) {
+          if (_filters['showS'] && player.grade == 'S') {
+            return true;
+          }
+          if (_filters['showA'] && player.grade == 'A') {
+            return true;
+          }
+          if (_filters['showB'] && player.grade == 'B') {
+            return true;
+          }
+          if (_filters['showC'] && player.grade == 'C') {
+            return true;
+          }
+          if (_filters['showD'] && player.grade == 'D') {
+            return true;
+          }
+          if (_filters['showE'] && player.grade == 'E') {
+            return true;
+          }
+          return false;
+        }).toList();
+      },
+    );
+  }
+
+  void _toggleFavourite(String playerId) {
+    final existingIndex =
+        _favouritePlayers.indexWhere((player) => player.id == playerId);
+
+    if (existingIndex >= 0) {
+      setState(() {
+        _favouritePlayers.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favouritePlayers
+            .add(DUMMY_PLAYERS.firstWhere((player) => player.id == playerId));
+      });
+    }
+  }
+
+  bool _isPlayerFavourite(String playerId) {
+    return _favouritePlayers.any((player) => player.id == playerId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Colors.indigo[900],
-        accentColor: Colors.redAccent[400]
-      ),
+          primaryColor: Colors.indigo[900],
+          accentColor: Colors.redAccent[400],
+          fontFamily: 'Delirium',
+          textTheme: TextTheme(
+              headline1: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Jackport-College',
+                fontSize: 40,
+              ),
+              headline2: TextStyle(
+                color: Colors.white,
+                fontSize: 40,
+              ),
+              headline3: TextStyle(
+                color: Colors.white,
+                fontSize: 26,
+              ),
+              headline4: TextStyle(color: Colors.indigo[900], fontSize: 56),
+              headline5: TextStyle(fontSize: 30))),
       routes: {
-        '/': (ctx) => TabsScreen(),
-        SelectedPositionScreen.route: (ctx) => SelectedPositionScreen(),
-        PlayersFilterScreen.route: (ctx) => PlayersFilterScreen(),
+        '/': (ctx) => TabsScreen(_filters, _setFilters, _favouritePlayers),
+        SelectedPositionScreen.route: (ctx) =>
+            SelectedPositionScreen(_matchingPlayers),
+        PlayersFilterScreen.route: (ctx) =>
+            PlayersFilterScreen(_filters, _setFilters),
+        PlayerDetailsScreen.route: (ctx) =>
+            PlayerDetailsScreen(_toggleFavourite, _isPlayerFavourite),
       },
     );
   }
