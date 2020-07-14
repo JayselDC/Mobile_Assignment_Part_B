@@ -1,6 +1,7 @@
+import 'package:Basketball_Scout_App/screens/positions_screen.dart';
 import 'package:flutter/material.dart';
 
-import './home_screen.dart';
+import './positions_screen.dart';
 import './favourites_screen.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _TabsScreenState extends State<TabsScreen> {
   void initState() {
     _pages = [
       {
-        'page': HomeScreen(),
+        'page': PositionsScreen(),
         'title': 'Positions',
       },
       {
@@ -55,14 +56,14 @@ class _TabsScreenState extends State<TabsScreen> {
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(
-              Icons.home,
+              Icons.person_outline,
             ),
-            title: Text('Home'),
+            title: Text('Positions'),
           ),
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(
-              Icons.favorite,
+              Icons.favorite_border,
             ),
             title: Text('Favourites'),
           ),
