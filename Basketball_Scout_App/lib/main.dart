@@ -1,3 +1,5 @@
+import 'package:Basketball_Scout_App/screens/players_filter_screen.dart';
+import 'package:Basketball_Scout_App/screens/selected_position_screen.dart';
 import 'package:flutter/material.dart';
 
 import './screens/tabs_screen.dart';
@@ -17,6 +19,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (ctx) => TabsScreen(),
+        SelectedPositionScreen.route: (ctx) => SelectedPositionScreen(),
+        PlayersFilterScreen.route: (ctx) => PlayersFilterScreen(),
       },
     );
   }
