@@ -127,6 +127,10 @@ class _PlayersFilterScreenState extends State<PlayersFilterScreen> {
               ],
             ),
           ),
+          Text('Does not filter favourites', style: TextStyle(
+            fontSize: 24,
+            color: Colors.grey,  
+          ),),
           Padding(
             padding: const EdgeInsets.all(10),
             child: Row(
