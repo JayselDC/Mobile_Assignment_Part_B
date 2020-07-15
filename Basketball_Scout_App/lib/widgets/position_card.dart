@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/selected_position_screen.dart';
 
+// UI widget displaying the position categories on the positions screen
 class PositionCard extends StatelessWidget {
   final String title;
   final String imageSrc;
@@ -11,6 +12,7 @@ class PositionCard extends StatelessWidget {
     this.imageSrc,
   );
 
+  // Navigates to the position's individual page
   void selectPosition(BuildContext context) {
     Navigator.of(context).pushNamed(
       SelectedPositionScreen.route,
@@ -22,7 +24,9 @@ class PositionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // InkWell widget to allow for user input (tap)
     return InkWell(
+      // Handles user input
       onTap: () => selectPosition(context),
       child: Card(
         shape: RoundedRectangleBorder(
@@ -37,6 +41,7 @@ class PositionCard extends StatelessWidget {
         ),
         child: Stack(
           children: <Widget>[
+            // ClipRRect forces the child widget into a rounded rectangle shape to match the container
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
@@ -46,6 +51,7 @@ class PositionCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
+            // Adding a shadow gradient to each image to make text more readable
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
@@ -62,6 +68,7 @@ class PositionCard extends StatelessWidget {
                 ),
               ),
             ),
+            // Positions the text on the stack
             Positioned(
               bottom: 15,
               right: 15,

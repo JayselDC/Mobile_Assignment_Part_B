@@ -4,6 +4,7 @@ import '../models/player.dart';
 import '../widgets/player_details_item.dart';
 import './players_filter_screen.dart';
 
+// Following screen from the positions which then displays all the players who match the respective position
 class SelectedPositionScreen extends StatefulWidget {
   static const route = '/selected-position';
 
@@ -26,6 +27,7 @@ class _SelectedPositionScreenState extends State<SelectedPositionScreen> {
     super.initState();
   }
 
+  // Checks if filters have been applied
   @override
   void didChangeDependencies() {
     final routeArgs =
@@ -40,10 +42,6 @@ class _SelectedPositionScreenState extends State<SelectedPositionScreen> {
     ).toList();
 
     super.didChangeDependencies();
-  }
-
-  void openFilters() {
-    Navigator.of(context).pushNamed(PlayersFilterScreen.route);
   }
 
   @override
@@ -61,16 +59,8 @@ class _SelectedPositionScreenState extends State<SelectedPositionScreen> {
             ),
           ],
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.filter_list,
-              color: Colors.white,
-            ),
-            onPressed: openFilters,
-          ),
-        ],
       ),
+      // Using a builder function which will handle when an unknown amount of players will be generated
       body: ListView.builder(
         itemBuilder: (ctx, i) {
           return PlayerDetailsItem(

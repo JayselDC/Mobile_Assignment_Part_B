@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
     'showE': true,
   };
 
+  // Sets the intial filters that are applied on the app
   void _setFilters(Map<String, bool> filterData) {
     setState(
       () {
@@ -59,6 +60,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  // Handles the adding and removing of a player from the favourites list
   void _toggleFavourite(String playerId) {
     final existingIndex =
         _favouritePlayers.indexWhere((player) => player.id == playerId);
@@ -75,6 +77,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  // Gets a boolean to check if a player is a favourite
   bool _isPlayerFavourite(String playerId) {
     return _favouritePlayers.any((player) => player.id == playerId);
   }
@@ -82,7 +85,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Basketball Scouting App',
+      // Sets a reusable template of styles for the app
       theme: ThemeData(
         primaryColor: Colors.indigo[900],
         accentColor: Colors.redAccent[400],
@@ -108,6 +112,7 @@ class _MyAppState extends State<MyApp> {
           headline5: const TextStyle(fontSize: 30),
         ),
       ),
+      // Tells the app what each page's route is
       routes: {
         '/': (ctx) => TabsScreen(
               _filters,

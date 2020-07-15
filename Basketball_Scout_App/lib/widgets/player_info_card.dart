@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// UI widget for the player details screen
 class PlayerInfoCard extends StatelessWidget {
   final int age;
   final int height;
@@ -13,6 +14,7 @@ class PlayerInfoCard extends StatelessWidget {
     @required this.grade,
   });
 
+  // Shortens the position name to it's acronym form
   String shortenedPositionName(String posName) {
     if (posName == 'Point Guard') {
       return 'PG';
@@ -32,7 +34,8 @@ class PlayerInfoCard extends StatelessWidget {
     return '';
   }
 
-  Widget cardRowBuilder(String text, String subText) {
+  // Builds each column that makes up the row of data
+  Widget cardColumnBuilder(String text, String subText) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -62,10 +65,10 @@ class PlayerInfoCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              cardRowBuilder(age.toString(), 'Years Old'),
-              cardRowBuilder(shortenedPositionName(position), 'Position'),
-              cardRowBuilder(height.toString(), 'Height'),
-              cardRowBuilder(grade, 'Class'),
+              cardColumnBuilder(age.toString(), 'Years Old'),
+              cardColumnBuilder(shortenedPositionName(position), 'Position'),
+              cardColumnBuilder(height.toString(), 'Height'),
+              cardColumnBuilder(grade, 'Class'),
             ],
           ),
         ),

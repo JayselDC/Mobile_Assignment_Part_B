@@ -4,13 +4,17 @@ import '../dummy_data.dart';
 import '../widgets/gradient_container.dart';
 import '../widgets/player_info_card.dart';
 
+// Displays the details of a player
 class PlayerDetailsScreen extends StatelessWidget {
   static const route = '/player-details';
 
   final Function toggleFavourite;
   final Function isFavourite;
 
-  const PlayerDetailsScreen(this.toggleFavourite, this.isFavourite);
+  const PlayerDetailsScreen(
+    this.toggleFavourite,
+    this.isFavourite,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +23,12 @@ class PlayerDetailsScreen extends StatelessWidget {
         DUMMY_PLAYERS.firstWhere((player) => player.id == id);
 
     return Scaffold(
+      // Scrollable, should there ever be extra data added to this screen
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Stack(
+              // Allows overlaying of the avatar over the gradient and the container following
               overflow: Overflow.visible,
               alignment: Alignment.center,
               children: <Widget>[
@@ -34,6 +40,7 @@ class PlayerDetailsScreen extends StatelessWidget {
                     Theme.of(context).accentColor
                   ],
                 ),
+                // Return functionality without the need for an AppBar
                 Positioned(
                   top: 30,
                   left: 5,
@@ -48,11 +55,13 @@ class PlayerDetailsScreen extends StatelessWidget {
                 ),
                 Positioned(
                   bottom: -88,
+                  // Nested CircleAvatars to create a border effect
                   child: CircleAvatar(
                     radius: 88,
                     backgroundColor: Colors.white,
                     child: CircleAvatar(
                       radius: 80,
+                      // Stops errors being thrown if the player has no image
                       backgroundImage: selectedPlayer.image != ''
                           ? ExactAssetImage(selectedPlayer.image)
                           : null,
@@ -81,6 +90,7 @@ class PlayerDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
+      // Button to add the currently viewed player to the list of favourites
       floatingActionButton: FloatingActionButton(
         onPressed: () => toggleFavourite(selectedPlayer.id),
         child: Icon(

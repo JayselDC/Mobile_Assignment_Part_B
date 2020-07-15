@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/player_details_screen.dart';
 
+// Creates the list items that go into the narrowed position screens
 class PlayerDetailsItem extends StatelessWidget {
   final String name;
   final String position;
@@ -10,17 +11,20 @@ class PlayerDetailsItem extends StatelessWidget {
   final String id;
   final String imgUrl;
 
-  PlayerDetailsItem({
-    @required this.name,
-    @required this.position,
-    @required this.age,
-    @required this.grade,
-    @required this.id,
-    this.imgUrl
-  });
+  PlayerDetailsItem(
+      {@required this.name,
+      @required this.position,
+      @required this.age,
+      @required this.grade,
+      @required this.id,
+      this.imgUrl});
 
+  // Navigates to the player details page
   void selectPlayer(BuildContext context) {
-    Navigator.of(context).pushNamed(PlayerDetailsScreen.route, arguments: id);
+    Navigator.of(context).pushNamed(
+      PlayerDetailsScreen.route,
+      arguments: id,
+    );
   }
 
   @override
@@ -36,6 +40,7 @@ class PlayerDetailsItem extends StatelessWidget {
             '${age.toString()} Years Old',
             style: TextStyle(fontSize: 24),
           ),
+          // Displays small image of the player
           leading: Hero(
             tag: name,
             child: CircleAvatar(
@@ -47,11 +52,11 @@ class PlayerDetailsItem extends StatelessWidget {
           trailing: Text(
             grade,
             style: TextStyle(
-              fontFamily: 'Delirium-Neon',
-              fontSize: 70,
-              color: Theme.of(context).accentColor
-            ),
+                fontFamily: 'Delirium-Neon',
+                fontSize: 70,
+                color: Theme.of(context).accentColor),
           ),
+          // Handles user input
           onTap: () => selectPlayer(context),
         ),
         const Divider(),

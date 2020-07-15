@@ -5,12 +5,17 @@ import './favourites_screen.dart';
 import './players_filter_screen.dart';
 import '../models/player.dart';
 
+// Main navigator of the app from the homepage
 class TabsScreen extends StatefulWidget {
   final Map<String, bool> filterData;
   final Function saveFilters;
   final List<Player> favouritePlayers;
 
-  TabsScreen(this.filterData, this.saveFilters, this.favouritePlayers);
+  TabsScreen(
+    this.filterData,
+    this.saveFilters,
+    this.favouritePlayers,
+  );
 
   @override
   _TabsScreenState createState() => _TabsScreenState();
@@ -39,6 +44,7 @@ class _TabsScreenState extends State<TabsScreen> {
     super.initState();
   }
 
+  // Handles page selection
   void _selectPage(int i) {
     setState(() {
       _selectedPageIndex = i;
@@ -51,6 +57,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Column(
           children: <Widget>[
+            // Workaround for font family having spacing underneath each character that affects alignment
             const SizedBox(
               height: 8,
             ),
@@ -70,6 +77,7 @@ class _TabsScreenState extends State<TabsScreen> {
         unselectedItemColor: Colors.white,
         currentIndex: _selectedPageIndex,
         type: BottomNavigationBarType.shifting,
+        // Creates each tab on the nav bar
         items: [
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,
@@ -102,6 +110,7 @@ class _TabsScreenState extends State<TabsScreen> {
             ),
           ),
         ],
+        // Handles user input
         onTap: _selectPage,
       ),
     );

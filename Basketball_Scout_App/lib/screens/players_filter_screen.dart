@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 
+// Allows the user to configure the displayed players by (so far only...) grade
 class PlayersFilterScreen extends StatefulWidget {
   static const route = '/players-filter';
 
   final Map<String, bool> currentFilters;
   final Function saveFilters;
 
-  PlayersFilterScreen(this.currentFilters, this.saveFilters);
+  PlayersFilterScreen(
+    this.currentFilters,
+    this.saveFilters,
+  );
 
   @override
   _PlayersFilterScreenState createState() => _PlayersFilterScreenState();
 }
 
 class _PlayersFilterScreenState extends State<PlayersFilterScreen> {
+  // Initialized booleans to default show all players
   var _showSClass = true;
   var _showAClass = true;
   var _showBClass = true;
@@ -20,6 +25,7 @@ class _PlayersFilterScreenState extends State<PlayersFilterScreen> {
   var _showDClass = true;
   var _showEClass = true;
 
+  // Handler for the 'save' IconButton
   void _handleSaveFilter() {
     final _selectedFilters = {
       'showS': _showSClass,
@@ -48,6 +54,7 @@ class _PlayersFilterScreenState extends State<PlayersFilterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Builder function for the filter tiles, keeps code leaner
     Widget _buildSwitchListTile(String title, bool val, Function update) {
       return Column(
         children: <Widget>[
@@ -134,6 +141,7 @@ class _PlayersFilterScreenState extends State<PlayersFilterScreen> {
               color: Colors.grey,
             ),
           ),
+          // Saves filters
           Padding(
             padding: const EdgeInsets.all(10),
             child: Row(

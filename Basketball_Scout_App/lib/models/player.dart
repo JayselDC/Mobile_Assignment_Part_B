@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// The basis of our app, would also be the fields in a DB
 class Player {
   final String id;
   final String name;
@@ -18,6 +19,6 @@ class Player {
     @required this.height,
     @required this.contactNumber,
     @required this.grade,
-    this.image
+    @required this.image
   });
 }
