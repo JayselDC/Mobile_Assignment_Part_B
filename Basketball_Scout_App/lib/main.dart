@@ -131,6 +131,10 @@ class _MyAppState extends State<MyApp> {
               _isPlayerFavourite,
             ),
       },
+      // Handles missing pages
+      onUnknownRoute: (_) {
+        return MaterialPageRoute(builder: (ctx) => TabsScreen(_filters, _setFilters, _favouritePlayers));
+      },
     );
   }
 }
